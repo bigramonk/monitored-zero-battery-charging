@@ -39,8 +39,14 @@ I set 4 different triggers:
 ### Publish connection change event
 <br><img src="./images/zerospy_webhook_trigger_connection_state_change.jpg" width="200"/>
 
-# Home Assistant webhooks
-Home assistant webhooks hace to be called using the following URL type:<br>
+From here, ZeroSpy will issue POST calls with the requested information every time a trigger condition is met.
+
+# Home Assistant
+An easy way to recover information locally and securely is to use webhooks.
+These tokens can be referenced in automations as triggers and the attached JSON data can be easily retrieved.
+
+## How to create and ue webhooks in Home Assistant
+Home assistant webhooks have to be called using the following URL type:<br>
 https://<i>your home assistant instance</i>:<i>port</i>/api/webhook/<i>webhook id</i>
 <br>where:
 <pre>port: 8123 by default
@@ -53,3 +59,18 @@ Alternately, you can use Password Safe on Windows (Password policy tab - Passwor
 
 In my example as well as in the screenshots, I used a totally insecure but easy to type <i>abcdef</i> token.
 Replace it by your own secure token in both the automation and ZeroSpy.
+
+## The automation
+Use the following yaml to retrieve the JSON information provided by ZeroSpy:
+<pre>
+  trigger:
+    platform: webhook
+    webhook_id: abcdef
+  variables:
+    what: "{{ trigger.json.event }}"
+    soc: "{{ trigger.json.SoC }}"
+    connected: "{{ trigger.json.connected }}"
+    valid: "{{ not 'connection issue' in evenement }}"
+</pre>
+
+Have a look at webhook.yaml![](./yaml/webhook.yaml) for a commplete automation example.
