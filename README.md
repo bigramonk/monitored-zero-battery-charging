@@ -1,7 +1,7 @@
 # monitored-zero-battery-charging
 Monitor Zero battery charging from within Home Assistant with an old/unused Android phone.
 
-Thanks to Boris Schaedler's ZeroSpy application, an old/unused Android phone can be repurposed into a Zero charging monitoring tool that can publish its info to a URL (I used thingspeak to send the information to the cloud and a REST sensor on Home Assistant to recover the information).<br><br>
+Thanks to Boris Schaedler's <a href="https://play.google.com/store/apps/details?id=com.bsc101.zerospy">ZeroSpy</a> application, an old/unused Android phone can be repurposed into a Zero charging monitoring tool that can publish its info to a URL (I used thingspeak to send the information to the cloud and a REST sensor on Home Assistant to recover the information).<br><br>
 Since February 28th, Boris added the ability to <b>post a JSON message</b> along with the called URL along with <b>new triggers</b>.
 <br><br>This gives us much more control over what is actually happening during the charge but also allows us to publish that information locally to Home Assistant via a Webhook, without needing an Internet connection.
 
