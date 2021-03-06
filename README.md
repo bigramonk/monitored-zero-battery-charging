@@ -1,9 +1,9 @@
 # monitored-zero-battery-charging
 Monitor Zero battery charging from within Home Assistant with an old/unused Android phone.
 
-Thanks to Boris Schaedler's ZeroSpy application, an old/unused Android phone can be repurposed into a Zero charging monitoring tool that can publish its info to a URL (I used thinspeak to send the information to the cloud and a REST sensor on Home Assistant to recover the information).<br>
+Thanks to Boris Schaedler's ZeroSpy application, an old/unused Android phone can be repurposed into a Zero charging monitoring tool that can publish its info to a URL (I used thingspeak to send the information to the cloud and a REST sensor on Home Assistant to recover the information).<br><br>
 Since February 28th, Boris added the ability to <b>post a JSON message</b> along with the called URL along with <b>new triggers</b>.
-<br>This gives us much more control over what is actually happening during the charge but also allows us to publish that information locally to Home Assistant via a Webhook, without needing an Internet connection.
+<br><br>This gives us much more control over what is actually happening during the charge but also allows us to publish that information locally to Home Assistant via a Webhook, without needing an Internet connection.
 
 ## Getting Started
 
@@ -22,7 +22,7 @@ In the settings, I left everything unchecked except <i>Keep Screen On</i>:
 <br><img src="./images/zerospy_settings_general_1.jpg" width="200" />
 
 ### ZeroSpy auto connect
-In the auto connect menu, I checked both <i>Auto Connect</i> and <i>Connect After Boot</i>: 
+In the auto connect menu (cogwheel on the main screen), I checked both <i>Auto Connect</i> and <i>Connect After Boot</i>: 
 <br><img src="./images/zerospy_settings_auto_connect.jpg" width="200" />
 
 ## The triggers
@@ -43,8 +43,8 @@ I set 4 different triggers:
 Home assistant webhooks hace to be called using the following URL type:<br>
 https://<i>your home assistant instance</i>:<i>port</i>:/api/webhook/<i>webhook id</i>
 <br>where:
-<pre>port: 8123 by default</pre>
-<pre>webhook id: random hex number, up to 64 characters that will be used as trigger in an automation</pre>
+<pre>port: 8123 by default
+webhook id: random hex number, up to 64 characters that will be used as trigger in an automation</pre>
   trigger:
     platform: webhook
     webhook_id: abcdef
