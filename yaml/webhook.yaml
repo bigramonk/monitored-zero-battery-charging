@@ -1,0 +1,48 @@
+#
+# Test example with curl from the command line
+# curl -X POST -H "Content-Type: application/json" --data '{"event":"battery status","SoC":"65","connected":true}' https://192.168.1.100:8123/api/webhook/abcdef
+# 
+- id: 'zero sr battery status information'
+  alias: zero sr battery status information
+  trigger:
+    platform: webhook
+    webhook_id: abcdef
+  variables:
+    what: "{{ trigger.json.event }}"
+    soc: "{{ trigger.json.SoC }}"
+    connected: "{{ trigger.json.connected }}"
+    valid: "{{ not 'connection issue' in what }}"
+  condition: []
+  action:
+  - data:
+      entity_id: input_boolean.zero_charging_is_monitored
+    service_template: "{% if connected %}input_boolean.turn_on{% else %}input_boolean.turn_off{% endif %}"
+  - choose:
+      - conditions:
+        - condition: template
+          value_template: "{{ 'battery status' in what }}"
+        sequence:
+        - service: input_number.set_value
+          data_template:
+            entity_id: input_number.zero_battery
+            value: "{{ soc|int }}"
+        - condition: template
+          value_template: "{{ states('input_number.zero_battery')|int < 100 }}"
+        - service: input_boolean.turn_off
+          entity_id: input_boolean.zero_battery_full
+      - conditions:
+        - condition: template
+          value_template: "{{ 'battery full' in what }}"
+        sequence:
+        - service: input_number.set_value
+          data_template:
+            entity_id: input_number.zero_battery
+            value: 100
+        - service: input_boolean.turn_on
+          entity_id: input_boolean.zero_battery_full
+    default:
+#      Could be hacking
+#      <send via alert service>
+#      message: "Invalid webhook data {{ trigger.json }}"
+
+  mode: single
