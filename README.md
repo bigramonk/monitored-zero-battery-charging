@@ -8,6 +8,13 @@ Since February 28th, Boris added the ability to <b>post a JSON message</b> along
 ## Getting Started
 
 ### Prerequisites
+
+#### Home Assistant
+This guide aims at helping the Home Assistant enthusiasts but I guess webhooks must be available on pretty much any other platform.
+#### Power relay
+In order to control the charge of the battery based on the ZeroSpy information, I use a very compact 16A Blitzwolf BW-SHP1 power relay and the excellent <a href="https://www.zigbee2mqtt.io/">zigbee2mqtt</a>.
+
+### Installation
 Install the Zero Motorcycle app on your old Android phone and get it connected to the bike.
 Then install ZeroSpy.
 
