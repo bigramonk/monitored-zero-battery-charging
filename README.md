@@ -73,4 +73,7 @@ Use the following yaml to retrieve the JSON information provided by ZeroSpy:
     valid: "{{ not 'connection issue' in evenement }}"
 </pre>
 
-Have a look at webhook.yaml![](./yaml/webhook.yaml) for a commplete automation example.
+Have a look at <a href="./yaml/webhook.yaml">webhook.yaml</a> for a commplete automation example.
+
+
+
