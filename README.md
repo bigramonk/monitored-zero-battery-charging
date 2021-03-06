@@ -5,18 +5,19 @@ Monitor Zero battery charging from within Home Assistant with an old/unused Andr
 
 ### Prerequisites
 Install the Zero Motorcycle app on your old Android phone and get it connected to the bike.
-Then install ZeroSpy and connect it also to your bike.
+Then install ZeroSpy.
 
-Connect the application to the
 ## ZeroSpy home screen
-Connect ZeroSpy to your bike using Bluetooth
+Connect ZeroSpy to your bike using Bluetooth and you should soon see your bike data appear on the screen:
 <br><img src="./images/zerospy_main_menu.jpg" width="200" />
 
-## ZeroSpy general settings
-In the settings, I left everything unchecked except Keep Screen On:
+## ZeroSpy configuration
+
+### ZeroSpy general settings
+In the settings, I left everything unchecked except <i>Keep Screen On</i>:
 <br><img src="./images/zerospy_settings_general_1.jpg" width="200" />
 
-## ZeroSpy auto connect
+### ZeroSpy auto connect
 In the auto connect menu, I checked both <i>Auto Connect</i> and <i>Connect After Boot</i>: 
 <br><img src="./images/zerospy_settings_auto_connect.jpg" width="200" />
 
