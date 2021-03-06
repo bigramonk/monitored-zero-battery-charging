@@ -41,10 +41,15 @@ I set 4 different triggers:
 
 # Home Assistant webhooks
 Home assistant webhooks hace to be called using the following URL type:<br>
-https://<i>your home assistant instance</i>:<i>port</i>:/api/webhook/<i>webhook id</i>
+https://<i>your home assistant instance</i>:<i>port</i>/api/webhook/<i>webhook id</i>
 <br>where:
 <pre>port: 8123 by default
 webhook id: random hex number, up to 64 characters that will be used as trigger in an automation</pre>
-  trigger:
-    platform: webhook
-    webhook_id: abcdef
+
+## Generating the 64 character webhook id
+On a Linux machine, you can easily generate a random token:
+<pre>openssl rand -hex 32</pre>
+Alternately, you can use Password Safe on Windows (Password policy tab - Password length: 64 characters, Use Hexadecimal digits only)
+
+In my example as well as in the screenshots, I used a totally insecure but easy to type <i>abcdef</i> token.
+Replace it by your own secure token in both the automation and ZeroSpy.
