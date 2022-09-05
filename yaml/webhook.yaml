@@ -16,26 +16,23 @@
   action:
   - data:
       entity_id: input_boolean.zero_charging_is_monitored
-    service_template: "{% if connected %}input_boolean.turn_on{% else %}input_boolean.turn_off{% endif %}"
+    service: "input_boolean.turn_{{ iif(connected,'on','off') }}"
   - choose:
-      - conditions:
-        - condition: template
-          value_template: "{{ 'battery status' in what }}"
+      - conditions: "{{ 'battery status' in what }}"
         sequence:
         - service: input_number.set_value
-          data_template:
-            entity_id: input_number.zero_battery
+          data:
             value: "{{ soc|int }}"
-        - condition: template
-          value_template: "{{ states('input_number.zero_battery')|int < 100 }}"
+          target:
+            entity_id: input_number.zero_battery
+        - condition: "{{ states('input_number.zero_battery')|int < 100 }}"
         - service: input_boolean.turn_off
-          entity_id: input_boolean.zero_battery_full
-      - conditions:
-        - condition: template
-          value_template: "{{ 'battery full' in what }}"
+          target:
+            entity_id: input_boolean.zero_battery_full
+      - conditions: "{{ 'battery full' in what }}"
         sequence:
         - service: input_number.set_value
-          data_template:
+          data:
             entity_id: input_number.zero_battery
             value: 100
         - service: input_boolean.turn_on
@@ -44,5 +41,4 @@
 #      Could be hacking
 #      <send via alert service>
 #      message: "Invalid webhook data {{ trigger.json }}"
-
   mode: single
