@@ -1,0 +1,8 @@
+zero_battery_full:
+  name: Zero battery full
+  icon: mdi:battery
+  initial: off
+
+zero_charging_is_monitored:
+  name: if old Android phone connected to Zero SR via Bluetooth
+  icon: mdi:bluetooth
